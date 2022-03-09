@@ -24,6 +24,9 @@ header {
   padding-top: 2vw;
 }
 
+body {
+  overflow-x: hidden;
+}
 .web_title {
   font-weight: 700;
   font-size: 1.5rem;
@@ -43,9 +46,8 @@ nav {
 .nav_link {
   display: flex;
   justify-content: space-around;
-  width: 30%;
+  width: 40%;
   z-index: 10;
-  border-radius: 20px;
 }
 
 .nav_link li {
@@ -64,7 +66,7 @@ nav {
   position: absolute;
   display: none;
   padding-top: 5px;
-  padding-right: 14.5vw;
+  padding-right: 20vw;
   z-index: 1;
 }
 
@@ -76,6 +78,88 @@ nav {
   transition: all 0.3s ease;
 }
 
+.content_box {
+  position: relative;
+  display: flex;
+  width: 95vw;
+  height: 100vh;
+  background: #f1faee;
+  border-radius: 60px;
+}
+
+.home_page {
+  position: absolute;
+  display: flex;
+  width: 100vw;
+  height: 105vh;
+  justify-content: center;
+}
+
+.content_box .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: rgb(255, 255, 255, 0);
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+}
+
+.waiting {
+  width: 40vw;
+  height: 40vw;
+  background-color: rgb(255, 255, 255, 0);
+}
+
+.left {
+  background-color: rgb(255, 255, 255, 0);
+}
+
+.right {
+  background-color: rgb(255, 255, 255, 0);
+}
+
+.content {
+  padding: 60px;
+}
+
+.slogan {
+  color: var(--mid-blue);
+  font-size: 72px;
+}
+
+.web_description {
+  color: var(--mid-blue);
+  padding: 20px 0 0 0;
+}
+
+.cta_btn,
+.web_description,
+.content,
+.btn,
+.slogan {
+  background-color: rgb(255, 255, 255, 0);
+}
+
+.cta_btn {
+  position: absolute;
+  text-decoration: none;
+  color: #fff;
+  padding: 16px 32px;
+  background: var(--light-blue);
+  border-radius: 15px;
+  transition: transform 0.5s; /* Animation */
+  margin-top: 30px;
+}
+
+.btn {
+  text-decoration: none;
+  color: var(--mid-blue);
+}
+
+.cta_btn:hover {
+  transform: scale(1.1);
+}
+
 @media screen and (max-width: 1050px) {
   body {
     overflow-x: hidden;
@@ -84,16 +168,15 @@ nav {
   .nav_link {
     position: absolute;
     right: 0px;
-    height: calc(120px + 20vh);
+    height: 100vh;
     top: 100px;
     color: #a8dadc;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: top;
+    justify-content: space-evenly;
     transform: translateX(100%);
-    transition: transform 0.5s ease-in;
   }
 
   .nav_link li {
@@ -104,16 +187,114 @@ nav {
   .burger {
     display: block;
   }
+
+  .content_box .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: rgb(255, 255, 255, 0);
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .slogan {
+    font-size: 50px;
+  }
+  .content_box {
+    display: flex;
+  }
+
+  .content_box {
+    padding: 100px 0 0 20px;
+  }
+  .waiting {
+    padding-top: 1vw;
+    width: 350px;
+    height: 350px;
+  }
+
+  .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cta_btn,
+  .btn,
+  .web_description,
+  .slogan {
+    text-align: center;
+  }
+
+  .buttondiv {
+    display: flex;
+    justify-content: center;
+  }
+
+  .content_box {
+    height: 120vh;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .slogan {
+    font-size: 45px;
+    text-align: center;
+  }
+  .web_description {
+    font-size: 14px;
+    text-align: center;
+  }
+  .cta_btn {
+    display: flex;
+    padding: 12px 20px;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .btn {
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .slogan {
+    font-size: 35px;
+  }
+
+  .web_description {
+    font-size: 2.5vw;
+  }
+
+  .cta_btn {
+    display: flex;
+    padding: 10px 12px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .btn {
+    font-size: 12px;
+  }
 }
 
 .nav_active {
   transform: translateX(0%);
+  transition: transform 0.5s ease-in;
 }
 
 @keyframes navLinkFade {
   from {
     opacity: 0;
-    transform: translateX(50px);
+    transform: translateX(80px);
   }
   to {
     opacity: 1;
@@ -157,24 +338,9 @@ nav {
 .fa-solid {
   color: var(--dark-blue);
   padding: 2.5px 8px 2.5px 2.5px;
+  background-color: rgb(255, 255, 255, 0);
 }
 
 .icons {
   display: flex;
-}
-
-.content_box {
-  position: relative;
-  width: 95vw;
-  height: 100vh;
-  background: #f1faee;
-  border-radius: 60px;
-}
-
-.home_page {
-  position: absolute;
-  display: flex;
-  width: 100vw;
-  height: 105vh;
-  justify-content: center;
 }
