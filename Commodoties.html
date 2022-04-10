@@ -1,13 +1,82 @@
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>Hanguk In Gurgaon</title>
+    <link
+      href="https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="https://kit.fontawesome.com/a518fb6697.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Hanguk in Gurgaon</title>
+    
+    <!-- loading in the google maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="where.js"></script>
+    <script>
+      //function that runs as soon as website opens
+      function initialize() { 
+        //default position
+        var myLatlng = new google.maps.LatLng(28.4684523,77.0623346);
+        //map settings
+        var mapOptions = { 
+          zoom: 3,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+        };
+        //defining the map
+        var map = new google.maps.Map(
+          document.getElementById("map_canvas"),
+          mapOptions
+        );
+
+        //for loop that runs through list of locations 
+        //and creates markers
+        i = 0;
+        var markers = [];
+        for (pos in myData) {
+          i = i + 1;
+          var row = myData[pos];
+          window.console && console.log(row);
+          // if ( i < 3 ) { alert(row); }
+          var newLatlng = new google.maps.LatLng(row[0], row[1]);
+          var marker = new google.maps.Marker({
+            position: newLatlng,
+            map: map,
+            title: row[2],
+          });
+          markers.push(marker);
+
+          console.log(markers)
+          
+          
+
+          var options = {
+            imagePath:
+              "http://rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m",
+          };
+        }
+
+        //Function that redirects to marker when clicked on location button
+        $('.itemBox').click(function(){
+          var locationid = $(this).attr('id');
+          $(this).addClass('current').siblings().removeClass('current');
+          map.setZoom(20);
+          map.setCenter(markers[locationid].getPosition());
+        })
+
+        //pushing the markers on to the map
+        var markerCluster = new MarkerClusterer(map, markers, options);
+
+        
+      }
+    </script>
+    <script>
+      
+    </script>
+    <script src="Zoom.js"></script>
   </head>
-  <body>
+  <body onload="initialize()">
     <header>
       <a href="#" class="web_title">Hanguk In Gurgaon</a>
       <nav>
@@ -26,5 +95,57 @@
       </nav>
       <script src="app.js"></script>
   </header>
+  <section class="commodoties_title">
+    <h1 class="at">Commodities for you</h1>
+  </section>
+  <!-- Content Box for map screen -->
+  <section class="cb">
+    <!-- Filters for location -->
+    <section class="filter">
+      <ul>
+        <li class="fi active" data-filter="All">All</li>
+        <li class="fi" data-filter="Restaurants">Restaurants</li>
+        <li class="fi" data-filter="Groceries">Groceries</li>
+        <li class="fi" data-filter="Clothing">Clothing</li>
+      </ul>
+      <!-- buttons made for each location -->
+      <div class="lol">
+        <div class="itemBox Clothing" id="0"><a>Uniqlo</a></div>
+        <div class="itemBox Groceries" id="1"><a>Kim's Mart</a></div>
+        <div class="itemBox Groceries" id="2"><a>Ichiba Food store - Japanese and Korean ingredients</a></div>
+        <div class="itemBox Groceries" id="3"><a>Seela Mart</a></div>
+        <div class="itemBox Restaurants" id="4"><a>The Bibimbab - Southpoint Mall</a></div>
+        <div class="itemBox Restaurants" id="5"><a>Hahn's Kitchen</a></div>
+        <div class="itemBox Restaurants" id="6"><a>Gung the palace</a></div>
+      </div>
+    </section>
+    <!-- importing Jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" 
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+    <!-- script for filteration bar -->
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.fi').click(function(){
+        const value = $(this).attr('data-filter');
+        if (value == 'All'){
+          $('.itemBox').show('1000');
+        }
+        else{
+          $('.itemBox').not('.'+value).hide('1000');
+          $('.itemBox').filter('.'+value).show('1000');
+        }
+      })
+      $('.fi').click(function(){
+        $(this).addClass('active').siblings().removeClass('active');
+      })
+    })
+      </script>
+    <div class="cr">
+      <div class="map_box">
+        <div id="map_canvas" class="map"></div>
+      </div>
+    </div>
+  </section>
   </body>
 </html>

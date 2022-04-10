@@ -6,12 +6,12 @@
   --mid-blue: #457b9d;
   --dark-blue: #1d3557;
   --red: #e63946;
+  --darker-light-blue: #7fb6b9;
 }
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: white;
   font-family: "Source Sans Pro", sans-serif;
 }
 
@@ -106,31 +106,34 @@ nav {
   animation: fadeInUp 1s ease forwards;
   animation-delay: 0.4s;
 }
-
-.home_page {
+/*formatting for the home_page section located below the nav bar*/
+.home_page { 
   position: absolute;
   display: flex;
   width: 100vw;
   height: 105vh;
   justify-content: center;
 }
-
-.content_box .container {
+/*container in section where the content will be*/
+.content_box .container { 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /*grid for the content*/
+  grid-template-columns: repeat(2, 1fr); 
   background-color: rgb(255, 255, 255, 0);
   height: 100vh;
   width: 100vw;
   align-items: center;
 }
 
-.waiting {
+/*formatting of the image*/
+.waiting { 
   width: 40vw;
   height: 40vw;
   background-color: rgb(255, 255, 255, 0);
 }
 
-.left {
+/*left side of page for textual content*/
+.left { 
   background-color: rgb(255, 255, 255, 0);
   opacity: 0;
   transform: translateY(-3rem);
@@ -138,7 +141,8 @@ nav {
   animation-delay: 0.8s;
 }
 
-.right {
+/*right side of page for image*/
+.right { 
   background-color: rgb(255, 255, 255, 0);
   opacity: 0;
   transform: translateY(-3rem);
@@ -316,8 +320,10 @@ nav {
 }
 
 .nav_active {
+  /* class which brings in a menu with all the hyperlinks*/
   transform: translateX(0%);
   transition: transform 0.5s ease-in;
+  z-index: 10;
 }
 
 @keyframes navLinkFade {
@@ -350,6 +356,7 @@ nav {
   color: var(--dark-blue);
 }
 #pages:after {
+  /*creates an underline for the hyperlinks*/
   content: "";
   position: absolute;
   background-color: var(--red);
@@ -357,10 +364,11 @@ nav {
   width: 0;
   left: 0;
   bottom: -5px;
-  transition: 0.3s;
+  transition: 0.3s; /*adds a 0.3 second animation time*/
 }
 
 #pages:hover:after {
+  /*displays underline after hovering*/
   width: 100%;
 }
 
@@ -368,6 +376,7 @@ nav {
   color: var(--dark-blue);
   padding: 2.5px 8px 2.5px 2.5px;
   background-color: rgb(255, 255, 255, 0);
+  z-index: 400;
 }
 
 .icons {
@@ -381,6 +390,17 @@ nav {
   align-items: center;
   justify-content: center;
   padding: 50px 0 0 0;
+  opacity: 0;
+  transform: translateY(-3rem);
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.commodoties_title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0 0 0;
   opacity: 0;
   transform: translateY(-3rem);
   animation: fadeInUp 1s ease forwards;
@@ -438,18 +458,23 @@ nav {
   background: #f1faee;
   border-radius: 60px;
 }
-@media screen and (max-width: 1200px) {
+
+/* If screen below 1200px*/
+@media screen and (max-width: 1200px) { 
+  /*font size gets reduced*/
   .about_text {
-    font-size: 20px;
+    font-size: 20px; 
   }
 }
 
 @media screen and (max-width: 1050px) {
+  /*font size gets reduced*/
   .about_text {
     font-size: 18px;
   }
   .about_content {
     display: grid;
+    /*Grid is disabled*/
     grid-template-columns: 1fr;
     background-color: rgb(255, 255, 255, 0);
     justify-content: flex-start;
@@ -459,6 +484,7 @@ nav {
     padding-top: 50px;
   }
   .about_box {
+    /*width becomes relative to view width*/
     width: 80vw;
   }
 }
@@ -474,5 +500,204 @@ nav {
     font-weight: 400;
     margin: 10px 40px;
     background-color: rgb(255, 255, 255, 0);
+  }
+}
+
+.cb {
+  margin: 30px 70px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  background-color: var(--light-green);
+  padding: 10px;
+  border-radius: 45px;
+  opacity: 0;
+  transform: translateY(-3rem);
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 1s;
+}
+
+#map_canvas {
+  height: 700px;
+  border-radius: 40px;
+}
+
+.filter {
+  padding: 20px;
+  width: 90%;
+  margin: 40px auto;
+}
+
+.filter ul {
+  display: flex;
+
+  justify-content: space-evenly;
+}
+
+.lol {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin-top: 10px;
+}
+
+.filter ul li {
+  list-style: none;
+  font-size: 22px;
+  color: var(--mid-blue);
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.filter ul li.active {
+  color: var(--dark-blue);
+}
+
+.itemBox {
+  padding: 25px;
+  margin: 10px;
+  margin-right: 35px;
+  text-align: left;
+  background-color: var(--light-blue);
+  border-radius: 20px;
+}
+
+.itemBox a {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.itemBox.Clothing.current,
+.itemBox.Restaurants.current,
+.itemBox.Groceries.current {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--dark-blue);
+}
+
+@media screen and (max-width: 1050px) {
+  .cb {
+    grid-template-columns: 1fr;
+  }
+
+  .filter ul {
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .itemBox {
+    padding: 15px;
+    margin: 10px;
+    text-align: left;
+    background-color: var(--light-blue);
+    border-radius: 10px;
+  }
+  .lol {
+    height: 50vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cb {
+    grid-template-columns: 1fr;
+  }
+
+  .itemBox {
+    padding: 15px;
+    width: 48vw;
+  }
+
+  .itemBox a {
+    font-size: 16px;
+  }
+
+  .filter ul li {
+    font-size: 18px;
+  }
+
+  .filter {
+    margin-bottom: 10px;
+  }
+
+  #map_canvas {
+    height: 80vw;
+    width: 65vw;
+  }
+}
+
+.etiquette_title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0 0 0;
+  opacity: 0;
+  transform: translateY(-3rem);
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.et{
+  font-size: 36px;
+  text-align: center;
+  color: var(--mid-blue);
+}
+
+.etiquette_content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0 50px 0;
+  
+}
+
+.etiquette_grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 750px;
+
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 60px 50px 60px;
+  background: #A8DADC;
+  border-radius: 45px;
+  width: 286px;
+  height: 355px;
+  justify-self: center;
+  
+}
+
+.card_content{
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  padding: 25px;
+
+}
+
+.card_image{
+  border-radius: 20px;
+  width: 250px;
+  height: 200px;
+
+}
+
+@media screen and (max-width: 1200px) {
+  .etiquette_grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .etiquette_grid{
+    grid-template-columns: 1fr;
   }
 }
